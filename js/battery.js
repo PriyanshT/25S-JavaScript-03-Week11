@@ -32,7 +32,12 @@ navigator.getBattery().then((battery) => {
     // STEP 3d: Update the battery information when the promise resolves
     updateBatteryStatus(battery);
     // STEP 4a: Event listener for changes to the charging status
-
+    battery.addEventListener("chargingchange", function () {
+        updateBatteryStatus(battery);
+    });
     // STEP 4b: Event listener for changes to the charge level
+    battery.addEventListener("levelchange", function () {
+        updateBatteryStatus(battery);
+    });
 });
 /* This script adapted from the excellent code examples found at https://www.w3.org/TR/battery-status/#examples and https://developer.mozilla.org/en-US/docs/Web/API/Battery_Status_API */
